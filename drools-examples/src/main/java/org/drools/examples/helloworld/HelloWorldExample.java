@@ -16,6 +16,7 @@
 
 package org.drools.examples.helloworld;
 
+import org.drools.core.base.RuleNameStartsWithAgendaFilter;
 import org.kie.api.KieServices;
 import org.kie.api.event.rule.DebugAgendaEventListener;
 import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
@@ -23,7 +24,9 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This is a sample file to launch a rule package from a rule source file.
@@ -48,8 +51,8 @@ public class HelloWorldExample {
         // Once the session is created, the application can interact with it
         // In this case it is setting a global as defined in the
         // org/drools/examples/helloworld/HelloWorld.drl file
-        ksession.setGlobal( "list",
-                            new ArrayList<Object>() );
+//        ksession.setGlobal( "list",
+//                            new ArrayList<Object>() );
 
         // The application can also setup listeners
         ksession.addEventListener( new DebugAgendaEventListener() );
@@ -63,14 +66,18 @@ public class HelloWorldExample {
         // KieRuntimeLogger logger = ks.getLoggers().newThreadedFileLogger( ksession, "./helloworld", 1000 );
 
         // The application can insert facts into the session
-        final Message message = new Message();
-        message.setMessage( "Hello World" );
-        message.setStatus( Message.HELLO );
-        ksession.insert( message );
+//        final Message message = new Message();
+//        message.setMessage( "Hello World" );
+//        message.setStatus( Message.HELLO );
+        Map<String,Object> map  = new HashMap<>();
+        map.put("type",1);
+        map.put("money",1000);
+        ksession.insert( map );
+
 
         // and fire the rules
         ksession.fireAllRules();
-
+        System.out.println(map);
         // Remove comment if using logging
         // logger.close();
 
