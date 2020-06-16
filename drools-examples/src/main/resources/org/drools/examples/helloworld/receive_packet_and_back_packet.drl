@@ -1,0 +1,24 @@
+package org.drools.examples.helloworld
+
+import java.util.Map
+import java.util.Objects
+
+
+
+rule "receive_packet_and_back_packet1"
+    agenda-group "receive_packet_and_back_packet"
+    dialect "java"
+    when
+        map :Map(this['type'] == 1)
+    then
+        map.put("res",1);
+end
+
+rule "receive_packet_and_back_packet2"
+    agenda-group "receive_packet_and_back_packet"
+    dialect "java"
+    when
+        map :Map(this['type'] == 2)
+    then
+        map.put("res",2);
+end

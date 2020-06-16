@@ -1,0 +1,34 @@
+package org.drools.examples.helloworld
+
+import java.util.Map
+import java.util.Objects
+
+
+
+rule "pre_pay1"
+    agenda-group "pre_pay"
+    dialect "java"
+    when
+        map :Map(this['type'] == 1)
+    then
+        map.put("res",1);
+end
+
+rule "pre_pay2"
+    agenda-group "pre_pay"
+    dialect "java"
+    when
+        map :Map(this['type'] == 2 && this['money'] <= 50000)
+    then
+        map.put("res",2);
+end
+
+
+rule "pre_pay3"
+    agenda-group "pre_pay"
+    dialect "java"
+    when
+        map :Map(this['type'] == 2 && this['money'] > 50000)
+    then
+        map.put("res",3);
+end

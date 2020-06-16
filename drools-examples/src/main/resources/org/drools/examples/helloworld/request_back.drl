@@ -1,0 +1,54 @@
+package org.drools.examples.helloworld
+
+import java.util.Map
+import java.util.Objects
+
+
+
+rule "request_back1"
+    agenda-group "request_back"
+    dialect "java"
+    when
+        map :Map(this['type'] == 1)
+    then
+        map.put("res",1);
+end
+
+rule "request_back2"
+    agenda-group "request_back"
+    dialect "java"
+    when
+        map :Map(this['type'] == 2 && this['money'] <= 50000)
+    then
+        map.put("res",2);
+end
+
+
+rule "request_back3"
+    agenda-group "request_back"
+    dialect "java"
+    when
+        map :Map(this['type'] == 2 && this['money'] > 50000 && this['money'] <= 1000000)
+    then
+        map.put("res",3);
+end
+
+
+rule "request_back4"
+    agenda-group "request_back"
+    dialect "java"
+    when
+        map :Map(this['type'] == 2 && this['money'] > 1000000 && this['money'] <= 3000000)
+    then
+        map.put("res",4);
+end
+
+
+rule "request_back5"
+    agenda-group "request_back"
+    dialect "java"
+    when
+        map :Map(this['type'] == 2 && this['money'] > 3000000)
+    then
+        map.put("res",5);
+end

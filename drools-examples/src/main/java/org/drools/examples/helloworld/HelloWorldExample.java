@@ -70,11 +70,12 @@ public class HelloWorldExample {
 //        message.setMessage( "Hello World" );
 //        message.setStatus( Message.HELLO );
         Map<String,Object> map  = new HashMap<>();
-        map.put("type",1);
-        map.put("money",1000);
+        map.put("type",ParamType.NONE_PROJECT_PROCUREMENT.getCode());
+        map.put("money",100_0000);
         ksession.insert( map );
 
 
+        ksession.getAgenda().getAgendaGroup(RuleType.GET_TICKET_PAY_REQUEST.getVal()).setFocus();
         // and fire the rules
         ksession.fireAllRules();
         System.out.println(map);
@@ -83,45 +84,6 @@ public class HelloWorldExample {
 
         // and then dispose the session
         ksession.dispose();
-    }
-
-    public static class Message {
-        public static final int HELLO   = 0;
-        public static final int GOODBYE = 1;
-
-        private String          message;
-
-        private int             status;
-
-        public Message() {
-
-        }
-
-        public String getMessage() {
-            return this.message;
-        }
-
-        public void setMessage(final String message) {
-            this.message = message;
-        }
-
-        public int getStatus() {
-            return this.status;
-        }
-
-        public void setStatus(final int status) {
-            this.status = status;
-        }
-
-        public static Message doSomething(Message message) {
-            return message;
-        }
-
-        public boolean isSomething(String msg,
-                                   List<Object> list) {
-            list.add( this );
-            return this.message.equals( msg );
-        }
     }
 
 }
