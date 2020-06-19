@@ -21,7 +21,7 @@ import org.drools.examples.decisiontable.PricingRuleDTExample;
 import org.drools.examples.decisiontable.PricingRuleTemplateExample;
 import org.drools.examples.fibonacci.FibonacciExample;
 import org.drools.examples.golfing.GolfingExample;
-import org.drools.examples.helloworld.HelloWorldExample;
+import org.drools.examples.helloworld.Ex;
 import org.drools.examples.honestpolitician.HonestPoliticianExample;
 import org.drools.examples.petstore.PetStoreExample;
 import org.drools.examples.shopping.ShoppingExample;
@@ -106,7 +106,7 @@ public class DroolsExamplesApp extends JFrame {
 
         contentPane.add(new JButton(new AbstractAction("HelloWorldExample") {
             public void actionPerformed(ActionEvent e) {
-                HelloWorldExample.execute( kieContainer );
+                Ex.execute( kieContainer );
             }
         }));
         contentPane.add(new JButton(new AbstractAction("FibonacciExample") {

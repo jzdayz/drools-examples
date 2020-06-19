@@ -3,9 +3,33 @@ package org.drools.examples.helloworld
 import java.util.Map
 import java.util.Objects
 
+// ==== 优先判断
 
+rule "pact_add_update_back2"
+    activation-group "pact_add_update_back"
+    agenda-group "pact_add_update_back"
+    dialect "java"
+    when
+        map :Map(this['type'] == 1 && (this['money'] > 200000 || (this['open']!=null && this['open'])))
+    then
+        map.put("res",2);
+end
+
+
+rule "pact_add_update_back4"
+    activation-group "pact_add_update_back"
+    agenda-group "pact_add_update_back"
+    dialect "java"
+    when
+        map :Map(this['type'] == 2 && ((this['money'] > 50000 && this['money'] <= 200000) || (this['open']!=null && this['open'])))
+    then
+        map.put("res",4);
+end
+
+// =====
 
 rule "pact_add_update_back1"
+    activation-group "pact_add_update_back"
     agenda-group "pact_add_update_back"
     dialect "java"
     when
@@ -14,17 +38,10 @@ rule "pact_add_update_back1"
         map.put("res",1);
 end
 
-rule "pact_add_update_back2"
-    agenda-group "pact_add_update_back"
-    dialect "java"
-    when
-        map :Map(this['type'] == 1 && this['money'] > 200000)
-    then
-        map.put("res",2);
-end
 
 
 rule "pact_add_update_back3"
+    activation-group "pact_add_update_back"
     agenda-group "pact_add_update_back"
     dialect "java"
     when
@@ -34,17 +51,9 @@ rule "pact_add_update_back3"
 end
 
 
-rule "pact_add_update_back4"
-    agenda-group "pact_add_update_back"
-    dialect "java"
-    when
-        map :Map(this['type'] == 2 && this['money'] > 50000 && this['money'] <= 200000)
-    then
-        map.put("res",4);
-end
-
 
 rule "pact_add_update_back5"
+    activation-group "pact_add_update_back"
     agenda-group "pact_add_update_back"
     dialect "java"
     when

@@ -5,7 +5,21 @@ import java.util.Objects
 
 
 
+// =====
+rule "request_back3"
+    activation-group "request_back"
+    agenda-group "request_back"
+    dialect "java"
+    when
+        map :Map((this['type'] == 2 && this['money'] > 50000 && this['money'] <= 1000000) || (this['open']!=null && this['open']))
+    then
+        map.put("res",3);
+end
+// =====
+
+
 rule "request_back1"
+    activation-group "request_back"
     agenda-group "request_back"
     dialect "java"
     when
@@ -15,6 +29,7 @@ rule "request_back1"
 end
 
 rule "request_back2"
+    activation-group "request_back"
     agenda-group "request_back"
     dialect "java"
     when
@@ -24,17 +39,11 @@ rule "request_back2"
 end
 
 
-rule "request_back3"
-    agenda-group "request_back"
-    dialect "java"
-    when
-        map :Map(this['type'] == 2 && this['money'] > 50000 && this['money'] <= 1000000)
-    then
-        map.put("res",3);
-end
+
 
 
 rule "request_back4"
+    activation-group "request_back"
     agenda-group "request_back"
     dialect "java"
     when
@@ -45,6 +54,7 @@ end
 
 
 rule "request_back5"
+    activation-group "request_back"
     agenda-group "request_back"
     dialect "java"
     when

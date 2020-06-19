@@ -5,7 +5,22 @@ import java.util.Objects
 
 
 
+// =====
+
+rule "request_add_update3"
+    activation-group "request_add_update"
+    agenda-group "request_add_update"
+    dialect "java"
+    when
+        map :Map((this['type'] == 2 && this['money'] > 50000 && this['money'] <= 1000000) || (this['open']!=null && this['open']))
+    then
+        map.put("res",3);
+end
+
+// =====
+
 rule "request_add_update1"
+    activation-group "request_add_update"
     agenda-group "request_add_update"
     dialect "java"
     when
@@ -15,6 +30,7 @@ rule "request_add_update1"
 end
 
 rule "request_add_update2"
+    activation-group "request_add_update"
     agenda-group "request_add_update"
     dialect "java"
     when
@@ -24,17 +40,8 @@ rule "request_add_update2"
 end
 
 
-rule "request_add_update3"
-    agenda-group "request_add_update"
-    dialect "java"
-    when
-        map :Map(this['type'] == 2 && this['money'] > 50000 && this['money'] <= 1000000)
-    then
-        map.put("res",3);
-end
-
-
 rule "request_add_update4"
+    activation-group "request_add_update"
     agenda-group "request_add_update"
     dialect "java"
     when
@@ -45,6 +52,7 @@ end
 
 
 rule "request_add_update5"
+    activation-group "request_add_update"
     agenda-group "request_add_update"
     dialect "java"
     when
