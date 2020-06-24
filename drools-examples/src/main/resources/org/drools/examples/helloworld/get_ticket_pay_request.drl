@@ -18,7 +18,7 @@ rule "get_ticket_pay_request2"
     agenda-group "get_ticket_pay_request"
     dialect "java"
     when
-        map :Map(this['type'] == 1 && this['money'] <= 50000)
+        map :Map(this['type'] == 2 && this['money'] <= 50000)
     then
         map.put("res",2);
 end
